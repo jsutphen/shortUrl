@@ -1,14 +1,15 @@
 extends layout
 
 block content
-  form
+  form(method='POST')
     label(for="#originalUrl") Original URL
-    input#originalUrl(type="text") 
+    input#originalUrl(type="text" name='originalUrl') 
     button(type="submit") Generate Short URL
-  p The shortened URL is 
-    span#currentUrl
-    |#{shortUrl}
+  if shortUrl != null
+    p The shortened URL is 
+      span#currentUrl
+      |#{shortUrl}
 
   script.
     const currentUrlSpan = document.querySelector('#currentUrl');
-    currentUrlSpan.innerHTML = window.location.href;
+    if (currentUrlSpan != null) currentUrlSpan.innerHTML = window.location.href;
