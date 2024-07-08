@@ -1,15 +1,20 @@
 extends layout
 
 block content
+  h1 Link shortener
   form(method='POST')
-    label(for="#originalUrl") Original URL
-    input#originalUrl(type="text" name='originalUrl') 
+    div
+      label(for="#originalUrl") Original URL
+      input#originalUrl(type="text" name='originalUrl' required) 
     button(type="submit") Generate Short URL
   if shortUrl != null
     p The shortened URL is 
-      span#currentUrl
-      |#{shortUrl}
+      a#currentUrl #{shortUrl}
+    p (Right click -> copy link ...)
 
   script.
-    const currentUrlSpan = document.querySelector('#currentUrl');
-    if (currentUrlSpan != null) currentUrlSpan.innerHTML = window.location.href;
+    const currentUrl = document.querySelector('#currentUrl');
+    if (currentUrl != null && `#{shortUrl}` != '') {
+      currentUrl.href = window.location.href + `#{shortUrl}`;
+      currentUrl.innerHTML = window.location.href + `#{shortUrl}`;
+    }
