@@ -35,7 +35,7 @@ router.post('/', asyncHandler(async (req, res, next) => {
 router.get('/:shortUrl', asyncHandler(async (req, res, next) => {
   const url = await Url.findOne({ shortUrl: req.params.shortUrl });
   if (url === null) {
-    res.send('page not found');
+    return next();
   } else {
     const originalUrl = url.originalUrl;
     res.status(301).redirect('https://' + originalUrl);
