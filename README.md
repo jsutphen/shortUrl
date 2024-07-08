@@ -1,4 +1,4 @@
-This is a basic url shortener made using node/express and mongodb. 
+This is a basic url shortener made using node/express and mongodb. It provides a start page where one can request a short url which redirects to the provided original url. 
 
 To make it work: 
 * clone the repository
